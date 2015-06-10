@@ -1,0 +1,60 @@
+﻿@model Digitally.Controllers.GroupModel
+<tr>
+    @{var current = Model.Group["Child"];}
+    @{var time = current.date.Hour + ":00";}
+    <td>
+        <span data-toggle="tooltip" data-placement="top" title="delete" date="@current.date.ToShortDateString()" group-id="@current.group_id" class="delete-group glyphicon glyphicon-remove"></span>
+    </td>
+    <td>@time</td>
+    <td isgroup="true" id="@current.group_id" time="@time">
+        <div class="currentValue">@Model.GroupName</div>
+        <form class="tallier" style="display: none">
+            <input type="text" class="numberEntry" value="@Model.GroupName">
+            <span data-toggle="tooltip" data-placement="top" title="Save" class="saver glyphicon glyphicon-ok"></span>
+        </form>
+    </td>
+    <td time="@time" age="Child" id="@current.id">
+        <div class="currentValue">@current.total</div>
+        <form class="tallier" style="display: none">
+            <input type="number" class="numberEntry" min="0" max="9999" value="@current.total">
+            <span data-toggle="tooltip" data-placement="top" title="Save" class="saver glyphicon glyphicon-ok"></span>
+            <span data-toggle="tooltip" data-placement="top" title="Cancel" class="canceller glyphicon glyphicon-remove"></span>
+        </form>
+    </td>
+    @{current = Model.Group["Teen"];}
+    <td time="@time" age="Teen" id="@current.id">
+        <div class="currentValue">@current.total</div>
+        <form class="tallier" style="display: none">
+            <input type="number" class="numberEntry" min="0" max="9999" value="@current.total">
+            <span data-toggle="tooltip" data-placement="top" title="Save" class="saver glyphicon glyphicon-ok"></span>
+            <span data-toggle="tooltip" data-placement="top" title="Cancel" class="canceller glyphicon glyphicon-remove"></span>
+        </form>
+    </td>
+    @{current = Model.Group["Young Adult"];}
+    <td time="@time" age="Young Adult" id="@current.id">
+        <div class="currentValue">@current.total</div>
+        <form class="tallier" style="display: none">
+            <input type="number" class="numberEntry" min="0" max="9999" value="@current.total">
+            <span data-toggle="tooltip" data-placement="top" title="Save" class="saver glyphicon glyphicon-ok"></span>
+            <span data-toggle="tooltip" data-placement="top" title="Cancel" class="canceller glyphicon glyphicon-remove"></span>
+        </form>
+    </td>
+    @{current = Model.Group["Adult"];}
+    <td time="@time" age="Adult" id="@current.id">
+        <div class="currentValue">@current.total</div>
+        <form class="tallier" style="display: none">
+            <input type="number" class="numberEntry" min="0" max="9999" value="@current.total">
+            <span data-toggle="tooltip" data-placement="top" title="Save" class="saver glyphicon glyphicon-ok"></span>
+            <span data-toggle="tooltip" data-placement="top" title="Cancel" class="canceller glyphicon glyphicon-remove"></span>
+        </form>
+    </td>
+    @{current = Model.Group["Senior"];}
+    <td time="@time" age="Senior" id="@current.id">
+        <div class="currentValue">@current.total</div>
+        <form class="tallier" style="display: none">
+            <input type="number" class="numberEntry" min="0" max="9999" value="@current.total">
+            <span data-toggle="tooltip" data-placement="top" title="Save" class="saver glyphicon glyphicon-ok"></span>
+            <span data-toggle="tooltip" data-placement="top" title="Cancel" class="canceller glyphicon glyphicon-remove"></span>
+        </form>
+    </td>
+</tr>

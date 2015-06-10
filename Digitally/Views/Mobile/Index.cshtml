@@ -1,0 +1,59 @@
+﻿@model Digitally.Controllers.TallyModel
+@{
+    ViewBag.Title = "Tallier";
+    var timeText =  Model.Date.ToShortDateString() + " " + Model.Date.ToShortTimeString();
+}
+@if (Model.IsCreated)
+{
+    <h4><a href="@Url.Action("Index", new {date = Model.Date, increment = -1})" data-toggle="tooltip" data-placement="top" title="Previous" class="glyphicon glyphicon-chevron-left"></a> @timeText<a href="@Url.Action("Index", new {date = Model.Date, increment = 1})" data-toggle="tooltip" data-placement="top" title="Next" class="glyphicon glyphicon-chevron-right"></a></h4>
+    <p id="notifier" class="alert alert-success">Ready to go!</p>
+    <div class="row">
+        <div class="col-sm-2">
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn tally-toggle btn-default ">
+                    <input type="radio" name="tally-direction" value="0" autocomplete="off"> -
+                </label>
+                <label class="btn btn-default tally-toggle active">
+                    <input type="radio" name="tally-direction" value="1" autocomplete="off" checked> +
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-default tally-radio active">
+                    <input type="radio" name="tally-increment" value="1" autocomplete="off" checked> 1
+                </label>
+                <label class="btn btn-default tally-radio">
+                    <input type="radio" name="tally-increment" value="2" autocomplete="off"> 2
+                </label>
+                <label class="btn btn-default tally-radio">
+                    <input type="radio" name="tally-increment" value="3" autocomplete="off"> 3
+                </label>
+                <label class="btn btn-default tally-radio">
+                    <input type="radio" name="tally-increment" value="4" autocomplete="off"> 4
+                </label>
+                <label class="btn btn-default tally-radio">
+                    <input type="radio" name="tally-increment" value="5" autocomplete="off"> 5
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <table>
+                <tr><td>@Html.Partial("AttendanceTallyButton", Model.Attendances[0])</td><td>@Html.Partial("AttendanceTallyButton", Model.Attendances[1])</td></tr>
+                <tr><td>@Html.Partial("AttendanceTallyButton", Model.Attendances[2])</td><td>@Html.Partial("AttendanceTallyButton", Model.Attendances[3])</td></tr>
+                <tr><td>@Html.Partial("AttendanceTallyButton", Model.Attendances[4])</td><td></td></tr>
+            </table>
+        </div>
+    </div>
+}
+else
+{
+    <h5>Today date has not yet been created!</h5>
+    using (Html.BeginForm("Create", "Mobile"))
+    {
+        <input type="hidden" value="@DateTime.Today" name="date">
+        <input type="submit" class="btn btn-primary" value="Create">
+    }
+}
